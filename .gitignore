@@ -105,3 +105,9 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# music files
+music/
+
+# mac icon file
+.DS_Store

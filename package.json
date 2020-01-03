@@ -13,6 +13,7 @@
     "chromecasts": "^1.9.1",
     "express": "^4.17.1",
     "localtunnel": "^2.0.0",
+    "music-metadata": "^6.0.1",
     "python-shell": "^1.0.8",
     "shelljs": "^0.8.3"
   }
