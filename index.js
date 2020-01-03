@@ -51,6 +51,7 @@ async function start () {
   // start webserver to receive webhook connection.
   server(port, handleWebHook);
 
+  await downloadTopPop();
   // run once every week
   setInterval(async function () {
     await downloadTopPop();
