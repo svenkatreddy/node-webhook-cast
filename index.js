@@ -16,16 +16,25 @@ const asyncForEach = async (array, callback) => {
   }
 }
 
+let status = '';
+
 async function handleWebHook(req, res, next) {
   const { url } = req;
   console.log(`someone requested ${url}`);
   switch (url) {
     case '/webhook-on-closing-door' : {
+      status = 'start';
       res.status(200).send('ok');
       const files = getFiles();
       await asyncForEach(files, async (file) => {
-        await castToDevice(castDevice, file, 'local');
-      })
+        if (status !== 'stop') await castToDevice.start(castDevice, file, 'local');
+      });
+      return false;
+    }
+    case '/webhook-on-opening-door' : {
+      status = 'stop';
+      res.status(200).send('ok');
+      return castToDevice.stop(castDevice);
     }
   }
   return next();
