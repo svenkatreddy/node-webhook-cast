@@ -9,6 +9,7 @@ const getFiles =  require('./lib/get-cast-files');
 
 const port = process.env.PORT || 4545;
 const castDevice = process.env.CASTDEVICE || 'Living Room TV';
+const skipInitialDownlod = process.env.SKIP_INITIAL_DOWNLOAD || false;
 
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
@@ -60,7 +61,9 @@ async function start () {
   // start webserver to receive webhook connection.
   server(port, handleWebHook);
 
-  await downloadTopPop();
+  if (!skipInitialDownlod) {
+    await downloadTopPop();
+  }
   // run once every week
   setInterval(async function () {
     await downloadTopPop();
