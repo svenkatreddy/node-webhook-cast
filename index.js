@@ -1,4 +1,3 @@
-const shell = require('shelljs');
 const dependenyInstall = require('./lib/dependency-install');
 const listDevices = require('./lib/list-devices');
 const server = require('./lib/server');
