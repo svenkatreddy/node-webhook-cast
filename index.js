@@ -61,11 +61,13 @@ async function start () {
   server(port, handleWebHook);
 
   if (!skipInitialDownlod) {
-    await downloadTopPop();
+    const stdout = await downloadTopPop();
+    console.log(stdout);
   }
   // run once every week
   setInterval(async function () {
-    await downloadTopPop();
+    const stdout = await downloadTopPop();
+    console.log(stdout);
   }, 604800000);
 
   // Either portforward it or use tunnel from localtunnel.
